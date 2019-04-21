@@ -1,0 +1,3 @@
+export const JOURNIES = {
+  FETCH_JOURNIES: 'FETCH_JOURNIES'
+};
