@@ -15,7 +15,7 @@ const port = config.port;
 const mongoUri = config.mongo.uri;
 
 // Connect to Mongoose and set connection variable
-mongoose.connect(mongoUri);
+mongoose.connect(mongoUri, { useNewUrlParser: true });
 
 // Send message for default URL
 app.get('/', (req, res) =>

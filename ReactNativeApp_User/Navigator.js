@@ -4,13 +4,15 @@ import store from './store/store';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Journies from './src/screens/Journies/Journies';
-import Home from './src/screens/Home/Home';
-import RouteMaps from './src/screens/RouteMaps/RouteMaps';
+import BookMyJourney from './src/screens/BookMyJourney/BookMyJourney';
+// import Home from './src/screens/Home/Home';
+// import RouteMaps from './src/screens/RouteMaps/RouteMaps';
 
 const AppNavigator = createStackNavigator({
-  home: Home,
-  routeMaps: RouteMaps,
-  journies: Journies
+  // home: Home,
+  // routeMaps: RouteMaps,
+  journies: Journies,
+  bookMyJourney: BookMyJourney
 });
 
 const AppContainer = createAppContainer(AppNavigator);
