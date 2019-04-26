@@ -5,6 +5,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Journies from './src/screens/Journies/Journies';
 import BookMyJourney from './src/screens/BookMyJourney/BookMyJourney';
+import TrackTheBus from './src/screens/TrackTheBus/TrackTheBus';
 // import Home from './src/screens/Home/Home';
 // import RouteMaps from './src/screens/RouteMaps/RouteMaps';
 
@@ -12,7 +13,8 @@ const AppNavigator = createStackNavigator({
   // home: Home,
   // routeMaps: RouteMaps,
   journies: Journies,
-  bookMyJourney: BookMyJourney
+  bookMyJourney: BookMyJourney,
+  trackTheBus: TrackTheBus
 });
 
 const AppContainer = createAppContainer(AppNavigator);

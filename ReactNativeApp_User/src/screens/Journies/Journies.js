@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, ScrollView } from 'react-native';
 import ModalWrapper from 'react-native-modal-wrapper';
 import { fetchJournies } from '../../actionsAPI/JourniesAPIs';
 import {
@@ -9,6 +9,7 @@ import {
 } from '../../actionsDispatch/JourniesDispatch';
 import CardComponent from '../../components/Card';
 import ViewStops from './ViewStops';
+import { convertISODateToReadable } from '../../helpers/reusableFunctions';
 
 const underscoreId = '_id';
 class Journies extends Component {
@@ -62,18 +63,26 @@ class Journies extends Component {
         <CardComponent
           header={`${journey.source.name} - ${journey.destination.name}`}
           footer={
-            <Button
-              onPress={() => this.NavigateToForm(journey.routeMap)}
-              title={'Book Now'}
-            />
+            <View>
+              <Button
+                onPress={() => this.NavigateToForm(journey.routeMap)}
+                title={'Book Now'}
+              />
+              <Button
+                onPress={() => this.props.navigation.navigate('trackTheBus')}
+                title={`Track Bus`}
+              />
+            </View>
           }
         >
           <View>
             <Text>
-              Start Date: {journey.startDate} Time: {journey.startTime}
+              Start Date: {convertISODateToReadable(journey.startDate)} Time:{' '}
+              {journey.startTime} Hrs
             </Text>
             <Text>
-              End Date: {journey.endDate} Time: {journey.endTime}
+              End Date: {convertISODateToReadable(journey.endDate)} Time:{' '}
+              {journey.endTime} Hrs
             </Text>
             <Button
               onPress={() => this.toggleViewStops(journey[underscoreId])}
@@ -99,7 +108,7 @@ class Journies extends Component {
             on selected date
           </Text>
         </View>
-        <View>{this.displayJournies(journies)}</View>
+        <ScrollView>{this.displayJournies(journies)}</ScrollView>
       </View>
     );
   }
