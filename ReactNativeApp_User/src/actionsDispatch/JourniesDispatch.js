@@ -8,3 +8,6 @@ export const clearBookJourneyForm = (dispatch, payload) =>
 
 export const updateFormFields = (dispatch, payload) =>
   dispatch({ type: JOURNIES.UPDATE_FORM_FIELDS, payload });
+
+export const selectedJourneyToSeeStops = (dispatch, payload) =>
+  dispatch({ type: JOURNIES.SELECTED_A_JOURNEY, payload });

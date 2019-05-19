@@ -2,6 +2,8 @@
   package="com.mobileapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
       android:name=".MainApplication"
@@ -21,10 +23,12 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-      <meta-data
+      <!-- google maps api key start -->
+      <!-- <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyBTsu0bN7QsHnQhj12daI1HKYWztKetJjw"
-      />
+      /> -->
+      <!-- google maps api key end -->
     </application>
 
 </manifest>

@@ -3,7 +3,8 @@ import { JOURNIES } from '../actionsDispatch/DispatchTypes';
 
 const initialState = {
   journies: [],
-  bookJourneyForm: {}
+  bookJourneyForm: {},
+  selectedJourneyID: ''
 };
 
 const resetBookJourneyForm = {
@@ -36,6 +37,9 @@ export default function reducer(state = initialState, action) {
     }
     case JOURNIES.UPDATE_FORM_FIELDS: {
       return updateFormFields(state, action);
+    }
+    case JOURNIES.SELECTED_A_JOURNEY: {
+      return { ...state, selectedJourneyID: action.payload };
     }
     default: {
       return state;

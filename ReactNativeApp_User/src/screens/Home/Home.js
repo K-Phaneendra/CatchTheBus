@@ -6,9 +6,14 @@ class Home extends Component {
     return (
       <View>
         <Text>Hi.. Welcome to Catch the Bus</Text>
+        <Text>Who Are You</Text>
+        <Button
+          onPress={() => this.props.navigation.navigate('driverLogin')}
+          title="Driver"
+        />
         <Button
           onPress={() => this.props.navigation.navigate('journies')}
-          title="Travel as a Volunteer"
+          title="Volunteer"
         />
       </View>
     );

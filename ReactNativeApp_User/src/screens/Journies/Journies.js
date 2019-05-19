@@ -1,54 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, Button, ScrollView } from 'react-native';
-import ModalWrapper from 'react-native-modal-wrapper';
 import { fetchJournies } from '../../actionsAPI/JourniesAPIs';
 import {
   fetchAll,
-  clearBookJourneyForm
+  clearBookJourneyForm,
+  selectedJourneyToSeeStops
 } from '../../actionsDispatch/JourniesDispatch';
 import CardComponent from '../../components/Card';
-import ViewStops from './ViewStops';
 import { convertISODateToReadable } from '../../helpers/reusableFunctions';
 
 const underscoreId = '_id';
 class Journies extends Component {
-  state = {
-    viewStops: false
-  };
   componentDidMount() {
     fetchJournies().then(APIResponse => {
       fetchAll(this.props.dispatch, APIResponse);
     });
   }
   toggleViewStops = journeyId => {
-    const { viewStops } = this.state;
-    this.setState({ viewStops: !viewStops, journeyId });
+    const { dispatch } = this.props;
+    dispatch(selectedJourneyToSeeStops(dispatch, journeyId));
+    this.props.navigation.navigate('viewStops');
   };
 
-  viewStops = (stops, id, sourceDestination) => {
-    const { viewStops, journeyId } = this.state;
-    if (journeyId === id) {
-      return (
-        <View>
-          <ModalWrapper
-            // animationType="slide"
-            // transparent={false}
-            visible={viewStops}
-            onRequestClose={this.toggleViewStops}
-            containerStyle={{ flexDirection: 'row', alignItems: 'flex-end' }}
-            style={{ flex: 1 }}
-          >
-            <ViewStops
-              journeyName={sourceDestination}
-              stops={stops}
-              hide={this.toggleViewStops}
-            />
-          </ModalWrapper>
-        </View>
-      );
-    }
-  };
   NavigateToForm = routeMap => {
     const payload = {
       routeMapId: routeMap[underscoreId],
@@ -68,10 +42,14 @@ class Journies extends Component {
                 onPress={() => this.NavigateToForm(journey.routeMap)}
                 title={'Book Now'}
               />
-              <Button
+              {/* <Button
                 onPress={() => this.props.navigation.navigate('trackTheBus')}
                 title={`Track Bus`}
-              />
+              /> */}
+              {/* <Button
+                onPress={() => this.props.navigation.navigate('testingScreen')}
+                title={`Testing Screen`}
+              /> */}
             </View>
           }
         >
@@ -88,11 +66,6 @@ class Journies extends Component {
               onPress={() => this.toggleViewStops(journey[underscoreId])}
               title={`View Stops: ${journey.routeMap.stops.length}`}
             />
-            {this.viewStops(
-              journey.routeMap.stops,
-              journey[underscoreId],
-              `${journey.source.name} - ${journey.destination.name}`
-            )}
           </View>
         </CardComponent>
       </View>
@@ -103,10 +76,10 @@ class Journies extends Component {
     return (
       <View>
         <View>
-          <Text>
+          {/* <Text>
             A date picker will be available here.. It will fetch journies based
             on selected date
-          </Text>
+          </Text> */}
         </View>
         <ScrollView>{this.displayJournies(journies)}</ScrollView>
       </View>

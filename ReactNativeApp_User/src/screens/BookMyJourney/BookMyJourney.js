@@ -39,7 +39,7 @@ class BookMyJourney extends Component {
       <View>
         <List>
           <ListItem>
-            <Text>From:</Text>
+            <Text>Boarding Point:</Text>
             <Picker
               selectedValue={bookJourneyForm.location}
               style={{ height: 50, width: 200 }}
